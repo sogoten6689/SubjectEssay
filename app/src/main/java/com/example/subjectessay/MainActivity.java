@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
@@ -55,10 +56,15 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.schedule:
-                Intent intent  = new Intent(this, ScheduleActivity.class);
-                startService(intent);
+                Intent intent_schedule  = new Intent(MainActivity.this, ScheduleActivity.class);
+                startActivity(intent_schedule);
+//                Toast.makeText(MainActivity.this,"schedule",Toast.LENGTH_LONG).show();
+                return true;
             case R.id.exit:
+//                Toast.makeText(MainActivity.this,"exits",Toast.LENGTH_LONG).show();
                 finish();
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

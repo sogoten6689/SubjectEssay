@@ -7,28 +7,17 @@ public class Schedule {
     private String tenThuoc;
     private Date thoiGian;
     private String ghiChu;
-    private Patient patient;
-
-    public Schedule(int id, String tenThuoc, Date thoiGian, String ghiChu, Patient patient) {
-        this.id = id;
-        this.tenThuoc = tenThuoc;
-        this.thoiGian = thoiGian;
-        this.ghiChu = ghiChu;
-        this.patient = patient;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
 
     public Schedule(int id, String tenThuoc, Date thoiGian, String ghiChu) {
         this.id = id;
         this.tenThuoc = tenThuoc;
         this.thoiGian = thoiGian;
+        this.ghiChu = ghiChu;
+    }
+
+    public Schedule(int id, String tenThuoc,  String ghiChu) {
+        this.id = id;
+        this.tenThuoc = tenThuoc;
         this.ghiChu = ghiChu;
     }
 

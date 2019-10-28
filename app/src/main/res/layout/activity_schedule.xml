@@ -6,24 +6,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ScheduleActivity">
-    <TextView
-        android:id="@+id/text_view_id_patient"
+    <!--<TextView-->
+        <!--android:id="@+id/text_id"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Mã bênh nhận"/>-->
+
+    <EditText
+        android:id="@+id/edit_text_ma"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mã bênh nhận"/>
-    <LinearLayout
-        android:orientation="horizontal"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edit_text_ten_thuoc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/edit_text_ten_thuoc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:id="@+id/edit_text_ghi_chu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edit_text_ghi_chu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
     <LinearLayout
@@ -31,11 +31,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+            android:id="@+id/btn_Select"
             android:text="Select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Button
+            android:id="@+id/btn_Save"
             android:text="Save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -50,13 +52,14 @@
             android:text="Delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        
-        <GridView
-            android:id="@+id/grid_view_schedule"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:numColumns="3"></GridView>
+
 
     </LinearLayout>
+
+    <GridView
+        android:id="@+id/grid_view_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"></GridView>
 
 </LinearLayout>
