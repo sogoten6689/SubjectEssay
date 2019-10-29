@@ -14,17 +14,60 @@
 
     <EditText
         android:id="@+id/edit_text_ma"
+        android:hint="Mã"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
         android:id="@+id/edit_text_ten_thuoc"
         android:layout_width="match_parent"
+        android:hint="Tên thuốc"
         android:layout_height="wrap_content" />
     <EditText
         android:id="@+id/edit_text_ghi_chu"
+        android:hint="Ghi chú"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:layout_width="53dp"
+            android:layout_height="wrap_content"
+            android:text="Ngày: " />
+
+        <TextView
+            android:id="@+id/text_view_ngay"
+            android:layout_width="238dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/buttom_ngay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="Gio: " />
+
+        <TextView
+            android:id="@+id/text_view_gio"
+            android:layout_width="236dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/buttom_gio"
+            android:text="Giờ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -60,6 +103,6 @@
         android:id="@+id/grid_view_schedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="3"></GridView>
+        android:numColumns="4"></GridView>
 
 </LinearLayout>

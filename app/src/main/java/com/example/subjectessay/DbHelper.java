@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -16,7 +17,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String script = "CREATE TABLE SCHEDULE ( id int primary key, TENTHUOC text, GHICHU text, THOIGIAN datetime, MABENHNHAN int)";
+        String script = "CREATE TABLE SCHEDULE ( id int primary key, TENTHUOC text, GHICHU text, GIO date, NGAY date, MABENHNHAN int)";
         sqLiteDatabase.execSQL(script);
 //        script = "CREATE TABLE PATIENT ( mabenhnhan text primary key, tenbenhnhan text, matkhau text )";
 //        sqLiteDatabase.execSQL(script);
@@ -28,9 +29,9 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public void addFirst() {
-        Schedule schedule = new Schedule(1, "Banadon","Sau khi an");
-        Schedule schedule1 = new Schedule(2, "vitamin","Khi met");
-        Schedule schedule2 = new Schedule(3, "thuoc ngu","truoc khi ngu");
+        Schedule schedule = new Schedule(1, "Banadon", new Date(), new Date(),"Sau khi an");
+        Schedule schedule1 = new Schedule(2, "vitamin", new Date(), new Date(),"Khi met");
+        Schedule schedule2 = new Schedule(3, "thuoc ngu", new Date(), new Date(),"truoc khi ngu");
         insertSchedule(schedule);
         insertSchedule(schedule1);
         insertSchedule(schedule2);
@@ -41,6 +42,8 @@ public class DbHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("id", schedule.getId());
         contentValues.put("TENTHUOC", schedule.getTenThuoc());
+        contentValues.put("GIO", schedule.getGio().toString());
+        contentValues.put("NGAY", schedule.getNgay().toString());
         contentValues.put("GHICHU", schedule.getGhiChu());
         int result =(int)sqLiteDatabase.insert("SCHEDULE", null, contentValues);
         sqLiteDatabase.close();
@@ -55,7 +58,7 @@ public class DbHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
         }
         while(cursor.isAfterLast() == false){
-            list.add(new Schedule(cursor.getInt(0), cursor.getString(1), cursor.getString(0)));
+            list.add(new Schedule(cursor.getInt(0), cursor.getString(1), new Date(), new Date(),cursor.getString(3)));
             cursor.moveToNext();
         }
         cursor.close();
