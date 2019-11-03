@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
+    Boolean alwaysRun = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +26,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void startService(View view) {
+
         String input = editText.getText().toString();
 
-        Intent intent = new Intent(this, NotiService.class);
-        intent.putExtra("inputExtra", input);
+//        while(alwaysRun){
+            Intent intent = new Intent(this, NotiService.class);
+            intent.putExtra("inputExtra", input);
+            startService(intent);
+//        }
 
-        startService(intent);
     }
 
 

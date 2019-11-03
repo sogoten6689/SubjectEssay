@@ -53,6 +53,7 @@ public class ScheduleActivity extends AppCompatActivity {
         buttonTime = (Button)findViewById(R.id.buttom_gio);
         btnSelect = (Button)findViewById(R.id.btn_Select);
         btnSave = (Button)findViewById(R.id.btn_Save);
+        btnDelete = (Button)findViewById(R.id.btn_Delete);
 
         // set time and date view
         textViewDate = (TextView)findViewById(R.id.text_view_ngay);
@@ -64,12 +65,17 @@ public class ScheduleActivity extends AppCompatActivity {
                 ArrayList<String> list_string = new ArrayList<>();
                 ArrayList<Schedule> list_schedule = new ArrayList<>();
                 list_schedule = dbHelper.getMySchedule(0);
-
+                list_string.add("id");
+                list_string.add("Tên thuốc");
+                list_string.add("Ghi chú");
+                list_string.add("Ngày");
+                list_string.add("Giờ");
                 for(Schedule b : list_schedule){
                     list_string.add(b.getId()+"");
                     list_string.add(b.getTenThuoc()+"");
                     list_string.add(b.getGhiChu()+"");
                     list_string.add(b.getDateFormat(b.getNgay()));
+                    list_string.add(b.getHourFormat(b.getGio()));
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(ScheduleActivity.this,android.R.layout.simple_list_item_1,list_string);
                 gvDisplay.setAdapter(adapter);
@@ -87,6 +93,14 @@ public class ScheduleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showTimePickerDialog();
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbHelper.deleteAll();
+                dbHelper.addFirst();
             }
         });
 
@@ -134,17 +148,17 @@ public class ScheduleActivity extends AppCompatActivity {
                         (dayOfMonth) +"/"+(monthOfYear+1)+"/"+year);
                 //Lưu vết lại biến ngày hoàn thành
                 cal.set(year, monthOfYear, dayOfMonth);
-                date=cal.getTime();
+                date = cal.getTime();
             }
         };
         //các lệnh dưới này xử lý ngày giờ trong DatePickerDialog
         //sẽ giống với trên TextView khi mở nó lên
         String s = textViewDate.getText()+"";
-        String strArrtmp[]=s.split("/");
-        int ngay=Integer.parseInt(strArrtmp[0]);
-        int thang=Integer.parseInt(strArrtmp[1])-1;
-        int nam=Integer.parseInt(strArrtmp[2]);
-        DatePickerDialog pic=new DatePickerDialog(
+        String strArrtmp[] = s.split("/");
+        int ngay = Integer.parseInt(strArrtmp[0]);
+        int thang = Integer.parseInt(strArrtmp[1])-1;
+        int nam = Integer.parseInt(strArrtmp[2]);
+        DatePickerDialog pic = new DatePickerDialog(
                 ScheduleActivity.this,
                 callback, nam, thang, ngay);
         pic.setTitle("Chọn ngày hoàn thành");
@@ -180,7 +194,7 @@ public class ScheduleActivity extends AppCompatActivity {
         String strArr[]=s.split(":");
         int gio=Integer.parseInt(strArr[0]);
         int phut=Integer.parseInt(strArr[1]);
-        TimePickerDialog time=new TimePickerDialog(
+        TimePickerDialog time = new TimePickerDialog(
                 ScheduleActivity.this,
                 callback, gio, phut, true);
         time.setTitle("Chọn giờ hoàn thành");

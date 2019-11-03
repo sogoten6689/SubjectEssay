@@ -29,9 +29,18 @@ public class NotiService extends Service {
                 .setContentText(input)
                 .setSmallIcon(R.drawable.ic_android)
                 .setContentIntent(pendingIntent)
+                .setWhen(System.currentTimeMillis()+ 10*10000)
+                .build();
+        Notification notification2 = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle("Noti Service")
+                .setContentText(input)
+                .setSmallIcon(R.drawable.ic_android)
+                .setContentIntent(pendingIntent)
+                .setWhen(System.currentTimeMillis()+ 10*10000)
                 .build();
 
         startForeground(1, notification);
+        startForeground(2, notification2);
 
         return  START_NOT_STICKY;
     }
